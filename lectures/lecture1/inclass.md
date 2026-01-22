@@ -6,6 +6,7 @@
   - along with resources for final projects 
 - For homeworks, submit a .txt file with a link to your work as your submission 
 
+
 ## What is Machine Learning? 
 - ML algorithm is the process that uncovers underlying relationship within the data
 - Machine learning model is the result of a Machine Learning Algorithm. 

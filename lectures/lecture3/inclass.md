@@ -1,0 +1,1 @@
+- Discussion form points are free (literally) 
