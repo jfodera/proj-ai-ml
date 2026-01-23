@@ -79,6 +79,39 @@
 
 ## Reinforcement Learning 
 - Training ML models to make a sequence of decisions
+- Agent learns to achieve goal in uncertain and potentially complex environment. 
+- The AI faces a 'game-like' situation 
+- trial and error based when model is solving problems 
+- In order to train, the AI gets either rewards or penalties for the actions it performs 
+  - the goal of the model is to maximize the reward 
+
+## ML Algs Grouped by Modeling Paradigm
+- Back to the discriminative and Generative models 
+### Discriminative Models
+- make predictions on unseen data by considering conditional probability 
+- used to discriminate between various classes 
+- In the form of P(y|x) 
+- Meant to either model the conditional distribution (P(y|x)) or directly learn a decision boundary 
+- Goal: predict y from x 
+- Ex. Log regression, SVM (support vector machine), or neural network classifiers 
+### Generative Models 
+- models focus on the distribution of the dataset to make a call on how llikely a given sample is. 
+- capture probability in the form of P(y,x) or P(x) if no lables 
+- Model joint distribution p(x,y) often via p(x | y) * p(y) or model p(x) alone 
+- Goal: learn how data is generated, so it can eventually do it itself 
+  - Can classify using Bayes': 
+  $$p(y \mid x)=\frac{p(x \mid y)\,p(y)}{p(x)}.$$
+- Examples: Naive Byes, Gaussian Mixture Models, HMMs, VAEs, GANs, diffusion 
+#### Problem formation 
+- assumed labeled data spam or ham problem
+- we want to determine probability of spam email (P(y=1|x))
+- Discriminative way: model will assume some underlying functional form for P(y|x)
+  - parameters of the model are then determined by using training data. 
+- Generative Model: conditional probability P(y|x) is calculated by using the prior P(y) and likelihood P(x|y) from training data
+  - this is applied to Bayes theorem to get final result 
+
+## Machine Learning Algorithms Grouped by Similarity.
+
 
 
 
@@ -88,6 +121,7 @@
 - A general learning algorithm is one that improves its performance on a task by learning from data
 - A **Deep** learning algorithim is one that uses neural networks with many layers to learn features 
 - **Regression** - how one variable changes as another changes 
+- **Paradigm** - modeling approach or methodology 
 
 ## Reads if have time 
 - https://cloud.google.com/learn/artificial-intelligence-vs-machine-learning
