@@ -205,9 +205,83 @@
 - When training the model, we wint to find the parameters (w* - optimal weight, and b* optimal bias) that minimize the total loss across all training examples; 
   - $w^∗$,$b^∗$ = $argmin_{w,b} \space L(w,b) $
     - argmin means the values of w,b that minimize the cost function
+- We solve the optimization problem by: 
+  - assuming bias b is part of w 
+    - appending a column to the design matrix X consisting of all ones
+  - From here, our problem boils down to minimizing $∥y−Xw∥^2$
+  - taking the derivative of the loss with respect to W and setting it equal to zero yeilds the analytical (closed-form) solution: 
+    - 'closed form' - no iteration, no approximation, no “keep computing until it converges.”
+    - $\textbf{w}^* = (X^TX)^{-1} X^Ty$
 
+## Linear Model Assumptions
+- Linearity - relationship bet independent and dependent variables is linear
+- Independence - observations are independent of each other
+- Homoscedasticity: variance of the errors is constant across all levels of the independent variables
+- Normality - Errors follow a normal distribution
+- No Multicollinearity - independent variables are not highly correlated with eachother. 
 
+## MLE (Maximum Likelihood Estimation)
+- *likelihood function* - measures the probability of observing. The given data under the assumed model 
+- Most ML models are optimization problems focused on minimization of error. 
+- MLE is a recipe for formulating the loss function that is to be minimized 
+- It is meant to find parameter values (features) within the training data that maximize the likelihood function
 
+## Logistic Regression 
+- Using linear regression to predict binary classification will result in a continuous outcome. 
+- A problem with bounded target outcomes (specifically binary classification) will use logistic regression. 
+- To do this, we use an activation on top of our linear model(from linear regression) 
+  - usually the sigmoid function. 
+  - 'activation' is simply a function applied to the output of a linear model. 
+- The predicted outcome:
+  - $\hat{y}$= $\sigma(\textbf{w}^Tx + b)$
+  - where $\sigma(z) = \frac{1}{(1+e^{-z})}$
+### Loss Function 
+- Cannot use equared error loss function for logistic regression 
+- So, the loss function for a single instance i is given by: 
+  - $l^{i}(y^{(i)},\hat{y}^{(i)})$ = $-(y^{(i)}\space log\hat{y}^{(i)} + (1-y^{i}) log(1-\hat{y}^{(i)}))$
+- The cost function for the entire data: 
+  - $L(y,\hat{y}) = \frac{1}{n} \sum_{i=1}^{n} l^{i}(y^{(i)},\hat{y}^{(i)})$
+
+## Gradient Descent
+- in a ML Alg, goal is to minimize the cost function 
+- This typically cannot be solved analytically. 
+- In these cases, we iteratively reduce the error by updating the parameters in the direction that incrementally lowers the cost function. - **Gradient Descent**
+
+- Instead of calculated the cost function of every iteration and updating from there (very expensive) we settle for sampling a random minibatch of examples every time we need to make an update. 
+  - This is called **minibatch stochastic gradient descent**
+### Steps
+- Initialize the values of the model parameters, typically at random
+- iteratively sample random minibatches from the data, updating the parameters i nthe direction of the negative gradient
+### Mathematically 
+- $(w,b) \leftarrow (w, b)- \frac{\eta}{B}\sum_{i\epsilon{B}}\partial_{(w,b)}l^{i}(y^{(i)},\hat{y}^{(i)})$
+  - B is number of examples in each minibatch 
+  - $\eta$ is learning rate
+  - these two above are hyperparams and not typically learned through model training
+- hyperparams are adjusted on a separate validation set
+- after training for a predetermined number of iterations (or until stopping criteria is met), we record the estimated model parameters, denoted $\hat{w},\hat{b}$. 
+  - we use hats because these are not going to be the exact minimizers of the loss funciton
+- Once these params are learned, we can go and calculate the predicted value for each example 
+
+## Why convex
+- If the loss function L($\theta$) is convex in the parameters $\theta$: 
+- *No spurious local minima* - any local minimum is a global minimum
+  - ensures gradient-based solutions don't fall down the 'wrong path' 
+- *Stronger Guarantees* - Many optimization algorithms have clean convergence guarantees under standard assumptions
+- *Easier debugging* - if training fails, its more likely due to the data, features, or optimization setting rather than a difficult objective landscape. 
+- *Stable Theory* - Many classical generalization and regularization results are simples in convex settings 
+  - Such as squared error (linear regression), logistic loss (logistic regression), hinge loss (SVM)
+
+## Why Differentiable
+- Loss is differentiable (or at least has subgradients)
+  - Differentiable → one exact direction
+  - Subgradient exists → many acceptable directions
+
+- *Enables fast first-order methods* - Gradients provide a direction for steepest descent
+  - important to compute gradients efficiently
+- *More efficient than gradient-free methods* - Without gradients, often rely on expensive approaches that scale poorly in high simensions
+- *Better numerical Behavior* - Smooth losses allow stable step-size control and can benefit from second-order approximations. 
+- *Supports Modern Tooling* - automatic differentiation settings nowadays typically assumes differentiability almost everywhere. 
+- Note - Optimization can still work using subgradients or smoothing; perfect differentiability everywhere is not required 
 
 ## Misc Definitions
 - A general learning algorithm is one that improves its performance on a task by learning from data
@@ -221,5 +295,6 @@
     - answers the questiob: "Given this new point, what label should it have?"
 - **Loss Function** - measures error for a single example 
 - **Empirical Error** - Measures average error over the entire training dataset
+- **Solving Problem Analytically** - closed form solution to it. 
 ## Reads if have time 
 - https://cloud.google.com/learn/artificial-intelligence-vs-machine-learning

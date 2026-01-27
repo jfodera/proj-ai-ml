@@ -86,5 +86,4 @@
   - don't get too bogged down in the features
     
 
-## Questions for Professor
-- how does participation work 
+

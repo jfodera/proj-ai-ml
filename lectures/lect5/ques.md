@@ -1,0 +1,1 @@
+- Help with the MLE and down for handwritten lect 1

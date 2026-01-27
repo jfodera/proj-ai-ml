@@ -3,6 +3,8 @@
 ## Administration 
 - Discussion form points are free (literally) 
 
+
+
 ## Introduction to Tree-Based methods 
 - There are not extremely interpretable 
 - emerged from statistics community 
@@ -37,4 +39,4 @@
 ## Important metrics to be aware of 
 - MSE for continuous problems not classifications 
 - those 3 metrics should be on all of our projects along with MSE 
-  - should also include a couple of sentances on what these mean . 
+  - should also include a couple of sentances on what these mean 
