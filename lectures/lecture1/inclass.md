@@ -112,7 +112,99 @@
 
 ## Machine Learning Algorithms Grouped by Similarity.
 
+- 1.) **Regression Algorithms**
+  - Most popular algorithms: 
+    - Ordinary Least Squares Regression (OLSR) 
+    - Linear Regression 
+    - Logistic Regression 
+    - Stepwise Regression 
+- 2.) **Instance-based Algorithms** 
+  - These learning models are decision problems with instances or examples of training data that are deemed important or required to the model 
+  - Most popular algorithms: 
+    - K-Nearest Neighbor (KNN) 
+    - Self-Organizing Map (SOM) 
+    - Support Vector Machines (SVM) 
+- 3.) **Regularization Algorithms**
+  - Extension made to another method (typically regression methods) that penalize models based on their complexity. 
+  - This results in the favoring of the simpler models that are better at generalizing
+  - the most popular algorithms are: 
+    - Ridge Regression 
+    - Least Absolute Shrinkage and Selection Operator (LASSO) 
+    - Elastic Net
+    - Least-Angle Regression (LARS) 
+- 4.) **Decision Tree Algorithms**
+  - These methods construct a model of decisions made based on actual values of attribtues in the data. 
+  - Most popular algs: 
+    - Classification and Regression Tree (CART) 
+    - Conditional Decision Trees
+- 5.) **Clustering Algorithms**
+  - typically organized by modeling approches such as: 
+    - *centroid-based* - utilizes a central data point
+    - *Hierarchical* - not based off a center
+  - popular algs: 
+    - K-Means 
+    - K-Medians 
+- 6.) **Artificial Neural Network Algorithsm** 
+  - Most popular algs
+    - Perceptron 
+    - Multilayer Perceptrons (MLP) 
+    - Back-propagation 
+    - Stochastic Gradient Descent
+    - Hopfield Network
+    - Radial Basis Function Network (RBFN) 
+- 7.) **Deep Learning Algorithms**
+  - A modern update to artificial neural networks that exploit abundant cheap computation
+  - most popular algs: 
+    - COnvolutional Neural Network (CNN) 
+    - Recurrent Neural Network (RNN ) 
+    - Long Short Term Memory Networks (LSTMs)
+      - built to remember long and short well 
+    - Stacked Auto-Encoders
+    - Deep Boltzmann Machine (DBM) 
+    - Deep Belief Networks (DBN) 
 
+## THe Linear Model
+- Here, we assume there exists and linear relationship between independent and dependent variables. We will discuss the linear model from the perspective of regression (numeric values mostly)
+### Linear Regression 
+- assume linear between x and y 
+- therefore, y can be expressed as a weighted sum of the elements in x
+- some noise is permissable 
+- the independent variables upon which teh predictions are based on are called features (covariates) 
+- data is indexed by i, such that each input can be broken down as such: $x^{(i)}$ = $[x_1^{(i)},x_2^{(i)}]$ and the corresponding labels as $y^{(i)}$
+  - yhat is defined by this: $\hat{y}^{(i)} = w^\top x^{(i)} + b$
+    - remember, b is the bias 
+
+- **The Model**
+  - the linearity assumptions states that the target variable can be expressed as a weighted sum of the features: 
+    - Note: we are using price of a house as a taget, and area (in sqft) and age(in years) to predict it. 
+  - $price = w_{area}.area + w_{age}.age +b$
+  - The goal is to choose the weights w and the bias 'b' such that on average, the predictions made according to our model best fit the true prices observed in the data.  
+  - Models whose output prediction is determined by the affine trasformation of input features are linear models.
+    - In these scenarios, the affine transformation is specified by the chosen weights ans bias. 
+    - an affine transformation is a linear transformation followed by a shift
+
+## Loss Function 
+- There is a target value and a predicted value in any ML problem 
+  - predicted trying to be target
+- Loss function is a way to quantify difference between the real and predicted value of the target
+- usually positive num where smaller vals are better 
+- most popular lost function in regression problems is the *squared error* 
+
+- if the predicted value for an example i is $\hat{y}^{(i)}$
+- corresponding actual label is: ${y}^{(i)}$
+- then the squared error loss function is given by: $l^{i}(w,b)$ = $\frac{1}{2}(\hat{y}^{(i)} - y^{(i)})^{2}$
+  - this is a function of weights and biases, for the given data example indexed by i 
+  - note the first character is an l
+  - the constant of 1/2 makes no real difference, but is notationally convenient, cancelling out with the exponent when we take the derivative of the loss. 
+- Sicne training dataset is given to us and out of our control, the empirical error is only a function of the model parameters. 
+
+## Cost Function 
+- Can measure the quality of a model on entire dataset of n examples by either averaging or summing the losses on the training set. 
+- This gives us the *cost function*: 
+  - $L(w,b) = \frac{1}{n} \sum_{i=1}^{n} l_i(w,b)$
+- When training the model, we wint to find the parameters (w* - optimal weight, and b* optimal bias) that minimize the total loss across all training examples; 
+  - $w^∗$,$b^∗$ = $argmin_{w,b} \space L(w,b) $
+    - argmin means the values of w,b that minimize the cost function
 
 
 
@@ -122,6 +214,12 @@
 - A **Deep** learning algorithim is one that uses neural networks with many layers to learn features 
 - **Regression** - how one variable changes as another changes 
 - **Paradigm** - modeling approach or methodology 
-
+- **Regularization** - Method to prevent against overfitting 
+- **K-Means vs K-NN** 
+  - K-means is a unsupervised *clustering* algorithms that clusters data and answers the question "which points belong together" 
+  - k-NN is a supervised *learning* algorithm that predicts labels 
+    - answers the questiob: "Given this new point, what label should it have?"
+- **Loss Function** - measures error for a single example 
+- **Empirical Error** - Measures average error over the entire training dataset
 ## Reads if have time 
 - https://cloud.google.com/learn/artificial-intelligence-vs-machine-learning
