@@ -220,15 +220,18 @@
 - Normality - Errors follow a normal distribution
 - No Multicollinearity - independent variables are not highly correlated with eachother. 
 
-## MLE (Maximum Likelihood Estimation)
-- *likelihood function* - measures the probability of observing. The given data under the assumed model 
+### MLE (Maximum Likelihood Estimation)
+- *likelihood function* - The likelihood function measures the probability of observing the given data under the assumed model.
+  - think of the Likelihood Function as a "Summary of Success" for your model's current settings.
+  - we want to maximize this 
 - Most ML models are optimization problems focused on minimization of error. 
 - MLE is a recipe for formulating the loss function that is to be minimized 
-- It is meant to find parameter values (features) within the training data that maximize the likelihood function
+- MLE is meant to find parameter values within the training data that maximize the likelihood function
 
-## Logistic Regression 
+### Logistic Regression 
 - Using linear regression to predict binary classification will result in a continuous outcome. 
 - A problem with bounded target outcomes (specifically binary classification) will use logistic regression. 
+- In Logistic Regression, the model doesn't output "0" or "1" directly. It outputs a continuous value between 0 and 1, which we interpret as the probability that the input $x_i$ belongs to the "positive" class ($y=1$).
 - To do this, we use an activation on top of our linear model(from linear regression) 
   - usually the sigmoid function. 
   - 'activation' is simply a function applied to the output of a linear model. 
@@ -236,11 +239,34 @@
   - $\hat{y}$= $\sigma(\textbf{w}^Tx + b)$
   - where $\sigma(z) = \frac{1}{(1+e^{-z})}$
 ### Loss Function 
-- Cannot use equared error loss function for logistic regression 
+- Cannot use squared error loss function for logistic regression 
 - So, the loss function for a single instance i is given by: 
   - $l^{i}(y^{(i)},\hat{y}^{(i)})$ = $-(y^{(i)}\space log\hat{y}^{(i)} + (1-y^{i}) log(1-\hat{y}^{(i)}))$
 - The cost function for the entire data: 
   - $L(y,\hat{y}) = \frac{1}{n} \sum_{i=1}^{n} l^{i}(y^{(i)},\hat{y}^{(i)})$
+
+### To formulate a loss function using MLE, you need two ingredients:
+
+1. **The Model ():** Your guess for the outcome (the architecture).
+2. **The Probability Distribution:** Your assumption about how the real data  varies around your guess  (the noise).
+
+Here is how those two work together to "formulate" the loss:
+
+#### 1. Defining  (The "Signal")
+
+When you define , you are defining the **structure of your prediction**.
+
+* In Linear Regression: 
+* In Neural Networks: 
+
+By defining , you are essentially saying: *"I believe the 'true' center of the data follows this mathematical pattern."*
+
+#### 2. Defining the Distribution (The "Noise")
+
+This is the part that actually turns  into a **Likelihood function**. You have to decide how  (the actual data) is distributed around your .
+
+* **Assumption A:** "I think the data  varies around  like a bell curve." → **This leads to Mean Squared Error.**
+* **Assumption B:** "I think  is a binary choice (0 or 1) with probability ." → **This leads to Cross-Entropy.**
 
 ## Gradient Descent
 - in a ML Alg, goal is to minimize the cost function 
